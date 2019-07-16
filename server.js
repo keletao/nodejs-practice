@@ -19,20 +19,29 @@ var server = http.createServer(function (req, res) {
             switch (POST.act) {
                 case 'reg':
                 if(user[POST.user]){//用户已存在
-                    
+                    res.write('{"achieve":"false","msg":"用户已存在"}');
                 }else{//注册成功}
-
+                    res.write('{"achieve":"true","msg":"注册成功"}');
                 }
                     break;
                 case 'login':
-                    if()
+                    if(user[POST.user]==undefined){
+                        res.write('{"achieve":"false","msg":"用户不存在"}');
+                    }else if(user[POST.user]!=POST.pass){
+                        res.write('{"achieve":"false","msg":"密码或用户名有误"}');
+                    }else{
+                        res.write('{"achieve":"false","msg":"登录成功"}');
+                    }
+                    
                     break;
                 default:
+                    res.write('{"achieve":"false","msg";"未知的act"}');
                     break;
             }
         } else { //其他模块  比如文件读取
 
         }
+        res.end();
     });
 });
 server.listen(8080);
@@ -45,3 +54,5 @@ server.listen(8080);
 //返回值     1 {"achieve":"false","msg":"用户不存在"}
 //          2 {"achieve":"false","msg":"密码或用户名有误"}
 //          3 {"achieve":"false","msg":"登录成功"}
+
+// 返回值   {"achieve":"false","msg";"未知的act"}
