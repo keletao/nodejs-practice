@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>nodejs-practice</title>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $("#regbtn").click(function(){
+            $.ajax({
+                url:'/user',
+                data:{act:'reg',user:$("#user").val(),pass:$("#pass").val()},//传递的数据
+                type:"post",
+                succeed:function(data){
+                    alert(data);
+                },
+                error:function(err){
+                    alert(err);
+                }
+            });
+        })
+        $("#loginbtn").click(function(){
+            $.ajax({
+                url:'/user',
+                type:"post",
+                succeed:function(data){
+                    alert(data);
+                },
+                error:function(err){
+                    alert(err);
+                }
+            });
+        })
+    })
+    </script>
+</head>
+<body>
+    <form>
+        用户：<input id="user" placeholder="用户名"></br>
+        密码：<input id="pass" placeholder="密码"></br>
+        <button id="regbtn">注册</button>
+        <button id="loginbtn">登录</button>
+    </form>
+</body>
+</html>
