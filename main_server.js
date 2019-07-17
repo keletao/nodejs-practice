@@ -2,6 +2,7 @@ const http = require('http');
 const URL = require('url');
 const querystring = require('querystring');
 const fs = require('fs');
+var user={};
 var server = http.createServer(function (req, res) {
     //解析数据
     var obj = URL.parse(req.url, true);
@@ -13,14 +14,15 @@ var server = http.createServer(function (req, res) {
     });
     req.on('end', function () {
         var POST = querystring.parse(str);
-        var user={};
+        
         if (url == '/user') {
-            console.log("成功了");
             switch (GET.act) {
                 case 'reg':
-                    if (user[GET.user]) {//用户已存在
+                    if (user[GET.name]) {//用户已存在
                         res.write('{"achieve":"false","msg":"用户已存在"}');
-                    } else {//注册成功}
+                    } else {//注册成功
+                        user[GET.name]=GET.pass;
+                        console.log(user[GET.name])
                         res.write('{"achieve":"true","msg":"注册成功"}');
                     }
                     break;
@@ -45,8 +47,8 @@ var server = http.createServer(function (req, res) {
                 if (err) {
                     console.log(url);
                 } else {
-                    console.log(file_name, url)
                     res.write(data);
+                    res.end();
                 }
             })
         }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+    window.onload=function(){
+        var oBtn_reg=document.getElementById('btn_reg');
+        var oBtn_login=document.getElementById('btn_login');
+        var oUser=document.getElementById('user');
+        var oPass=document.getElementById('pass');
+        oBtn_reg.onclick=function(){
+            $.ajax({
+                url:'./user',
+                type:'get',
+                data:{act:"reg",name:oUser.value,pass:oPass.value},
+                success:function(data){
+                    var json=eval('('+ data +')');
+                    console.log(json.achieve)
+                    if(json.achieve=='true'){
+                        alert(json.msg);
+                        alert('成功')
+                    }else{
+                        alert(json.msg)
+                    }
+                }
+            })
+        }
+    }
+    </script>
+</head>
+<body>
+    <input id="user" type="text" placeholder="用户名">
+    <input id="pass" type="password" placeholder="密码">
+    <input id="btn_reg" value="reg" type="button">
+    <input id="btn_login" value="login" type="button">
+</body>
+</html>
