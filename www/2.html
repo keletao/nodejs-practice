@@ -20,12 +20,19 @@
                 success:function(data){
                     var json=eval('('+ data +')');
                     console.log(json.achieve)
-                    if(json.achieve=='true'){
-                        alert(json.msg);
-                        alert('成功')
-                    }else{
-                        alert(json.msg)
-                    }
+                    alert(json.msg)
+                }
+            })
+        }
+        oBtn_login.onclick=function(){
+            $.ajax({
+                url:'/user',
+                type:'get',
+                data:{act:'login',name:oUser.value,pass:oPass.value},
+                success:function(data){
+                    var json=eval('('+ data +')');
+                    console.log(json.achieve)
+                    alert(json.msg)
                 }
             })
         }

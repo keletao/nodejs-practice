@@ -27,9 +27,9 @@ var server = http.createServer(function (req, res) {
                     }
                     break;
                 case 'login':
-                    if (user[GET.user] == undefined) {
+                    if (user[GET.name] == undefined) {
                         res.write('{"achieve":"false","msg":"用户不存在"}');
-                    } else if (user[GET.user] != GET.pass) {
+                    } else if (user[GET.name] != GET.pass) {
                         res.write('{"achieve":"false","msg":"密码或用户名有误"}');
                     } else {
                         res.write('{"achieve":"false","msg":"登录成功"}');
