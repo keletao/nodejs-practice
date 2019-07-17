@@ -11,9 +11,8 @@
     $(document).ready(function(){
         $("#regbtn").click(function(){
             $.ajax({
-                url:'/user',
-                data:{act:'reg',user:$("#user").val(),pass:$("#pass").val()},//传递的数据
-                type:"post",
+                url:'/user?name=name&pass=pass',
+                type:'GET',
                 succeed:function(data){
                     alert(data);
                 },
@@ -25,7 +24,7 @@
         $("#loginbtn").click(function(){
             $.ajax({
                 url:'/user',
-                type:"post",
+                type:"get",
                 succeed:function(data){
                     alert(data);
                 },
