@@ -57,3 +57,11 @@ var server = http.createServer(function (req, res) {
 
 })
 server.listen(8080);
+//接口  get   localhost:8080/www/index.html/user?act=reg&name=tao&pass=123   注册
+//返回值     1 {"achieve":"false","msg":"用户已存在"}
+//          2 {"achieve":"true","msg":"注册成功"}
+//
+//接口  get   localhost:8080/www/index.html/user?act=login&name=ato&pass=123  登录
+//返回值     1 {"achieve":"false","msg":"用户不存在"}
+//          2 {"achieve":"false","msg":"密码或用户名有误"}
+//          3 {"achieve":"false","msg":"登录成功"}
